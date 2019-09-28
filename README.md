@@ -7,7 +7,7 @@
 |password|integer|null:false|
 ### Association
 - has_many:groups,through: :groups_users
-- has_many:message
+- has_many:messages
 - has_many:groups_users
 
 ## groupsテーブル
@@ -16,21 +16,21 @@
 |------|----|-------|
 |name|integer|index: true, null:false, unique:true|
 ### Association
-- has_many:user, through: :groups_users
-- has_many:message
+- has_many:users, through: :groups_users
+- has_many:messages
 - has_many:groups_users
 
-##messageテーブル
+##messagesテーブル
 
 |Column|Type|Options|
 |------|----|-------|
-|body|integer|null: false|
-|image|integer|null: false|
+|body|text|null: false|
+|image|string|null: false|
 |group_id|integer|null: false, foreign_key: true|
 |user_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :users
-- belongs_to :groups
+- belongs_to :user
+- belongs_to :group
 
 ## groups_usersテーブル
 
@@ -39,7 +39,7 @@
 |user_id|integer|null: false, foreign_key: true|
 |group_id|integer|null: false, foreign_key: true|
 ### Association
-- belongs_to :groups
-- belongs_to :users
+- belongs_to :group
+- belongs_to :user
 
 

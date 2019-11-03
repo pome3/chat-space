@@ -1,9 +1,9 @@
 .chat__main__footer
-  %form{method:"post", action:"/"}
-    .chat__main__footer__input-box
-      %input{type: "text", placeholder: "type a message", class: "input-box"}
-      .chat__main__footer__input-box__label
-        %label{class:"input-box-image", for:"message_image", class:"fa fa-image"}
-        %input{class:"input-box__image__file", type:"file", name:"message[image]", id:"message_image"}
-      .chat__main__footer__send
-        %input{type:"submit", value:"send", class:"submit-btn"}
+  .form
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'

@@ -1,9 +1,11 @@
 .chat__main__message
-  .chat__main__message__top
-    %p test-user
+  .chat__main__message
+    .chat__main__message__top
+      = message.user.name
     .chat__main__message__top__text
-      %p こんにちは！
+    = message.created_at.strftime("%Y/%m/%d %H:%M")
   .chat__main__message__time
-    2019/10/2
-  .chat__main__message__text
-    %p さようなら
+    - if message.content.present?
+      %p.lower-message__content
+        = message.content
+    = image_tag message.image.url, class: 'lower-message__image' if message.image.present?
